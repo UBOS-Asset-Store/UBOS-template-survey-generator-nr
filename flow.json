@@ -1,1 +1,729 @@
-[]
+[
+    {
+        "id": "fb5738a77d24f8d4",
+        "type": "tab",
+        "label": "Survey generator",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "af0e239fff0b28cb",
+        "type": "group",
+        "z": "fb5738a77d24f8d4",
+        "name": "Credentials",
+        "style": {
+            "fill": "#e3f3d3",
+            "label": true
+        },
+        "nodes": [
+            "8ecbfc06bc9f14e6",
+            "546fccd91bd0c1fe",
+            "56b615fdae6f5b7a",
+            "7b18f9005dfed6d8",
+            "2947b0da37b1b5bf",
+            "4794739f0ca7f4d4",
+            "4f4297eea101504b",
+            "54d3949016ccd055",
+            "70fa563524bce094",
+            "22ca0fc049e4fb3a",
+            "9e2c5ec10d494689",
+            "57ec30d9da3742eb",
+            "f3f0cea32f89e7ca",
+            "b35713f8d22c2279"
+        ],
+        "x": 34,
+        "y": 119,
+        "w": 992,
+        "h": 282
+    },
+    {
+        "id": "81010ac89e2578ce",
+        "type": "group",
+        "z": "fb5738a77d24f8d4",
+        "name": "LInks",
+        "style": {
+            "fill": "#bfdbef",
+            "label": true
+        },
+        "nodes": [
+            "e6f8cad1b65ca144",
+            "b3f5ed024160118c",
+            "4deaa9b0d8ad4d5a",
+            "08beb73ed61742bd",
+            "5062046f510fd611",
+            "e3ba8759d1474ebe"
+        ],
+        "x": 1094,
+        "y": 119,
+        "w": 422,
+        "h": 182
+    },
+    {
+        "id": "f168eeb2f9b6dc07",
+        "type": "mongodb",
+        "hostname": "${MONGO-HOST-NAME}",
+        "topology": "direct",
+        "connectOptions": "authSource=admin",
+        "port": "27017",
+        "db": "${MONGO-DB-NAME}",
+        "name": ""
+    },
+    {
+        "id": "8ecbfc06bc9f14e6",
+        "type": "http in",
+        "z": "fb5738a77d24f8d4",
+        "g": "af0e239fff0b28cb",
+        "name": "",
+        "url": "/saveCredentials",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 160,
+        "y": 160,
+        "wires": [
+            [
+                "70fa563524bce094"
+            ]
+        ]
+    },
+    {
+        "id": "546fccd91bd0c1fe",
+        "type": "http response",
+        "z": "fb5738a77d24f8d4",
+        "g": "af0e239fff0b28cb",
+        "name": "response credentials",
+        "statusCode": "",
+        "headers": {},
+        "x": 780,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "56b615fdae6f5b7a",
+        "type": "http in",
+        "z": "fb5738a77d24f8d4",
+        "g": "af0e239fff0b28cb",
+        "name": "",
+        "url": "/getCredentials",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 150,
+        "y": 240,
+        "wires": [
+            [
+                "7b18f9005dfed6d8"
+            ]
+        ]
+    },
+    {
+        "id": "7b18f9005dfed6d8",
+        "type": "function",
+        "z": "fb5738a77d24f8d4",
+        "g": "af0e239fff0b28cb",
+        "name": "sortCredentials",
+        "func": "msg.collection = 'credentials';\nmsg.payload = {};\nmsg.sort = { '_id': -1 };\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 380,
+        "y": 240,
+        "wires": [
+            [
+                "4f4297eea101504b"
+            ]
+        ]
+    },
+    {
+        "id": "2947b0da37b1b5bf",
+        "type": "http response",
+        "z": "fb5738a77d24f8d4",
+        "g": "af0e239fff0b28cb",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 950,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "4794739f0ca7f4d4",
+        "type": "function",
+        "z": "fb5738a77d24f8d4",
+        "g": "af0e239fff0b28cb",
+        "name": "getLastCredential",
+        "func": "\nif (msg.payload.length > 0) {\n    msg.payload = msg.payload[0];\n} else {\n    msg.payload = {\n        \"_id\": '',\n        \"openAIKey\": '',\n        \"model\": '',\n        \"context\": '',\n        \"goal\": '',\n        \"number\": ''\n        \n    }\n}\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 770,
+        "y": 240,
+        "wires": [
+            [
+                "2947b0da37b1b5bf"
+            ]
+        ]
+    },
+    {
+        "id": "4f4297eea101504b",
+        "type": "link call",
+        "z": "fb5738a77d24f8d4",
+        "g": "af0e239fff0b28cb",
+        "name": "find",
+        "links": [
+            "e6f8cad1b65ca144"
+        ],
+        "linkType": "static",
+        "timeout": "30",
+        "x": 570,
+        "y": 240,
+        "wires": [
+            [
+                "4794739f0ca7f4d4"
+            ]
+        ]
+    },
+    {
+        "id": "54d3949016ccd055",
+        "type": "link call",
+        "z": "fb5738a77d24f8d4",
+        "g": "af0e239fff0b28cb",
+        "name": "insert",
+        "links": [
+            "4deaa9b0d8ad4d5a"
+        ],
+        "linkType": "static",
+        "timeout": "30",
+        "x": 570,
+        "y": 160,
+        "wires": [
+            [
+                "546fccd91bd0c1fe"
+            ]
+        ]
+    },
+    {
+        "id": "70fa563524bce094",
+        "type": "function",
+        "z": "fb5738a77d24f8d4",
+        "g": "af0e239fff0b28cb",
+        "name": "setCollection",
+        "func": "msg.collection = 'credentials';\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 370,
+        "y": 160,
+        "wires": [
+            [
+                "54d3949016ccd055"
+            ]
+        ]
+    },
+    {
+        "id": "22ca0fc049e4fb3a",
+        "type": "complete",
+        "z": "fb5738a77d24f8d4",
+        "g": "af0e239fff0b28cb",
+        "name": "",
+        "scope": [
+            "546fccd91bd0c1fe"
+        ],
+        "uncaught": false,
+        "x": 150,
+        "y": 320,
+        "wires": [
+            [
+                "57ec30d9da3742eb"
+            ]
+        ]
+    },
+    {
+        "id": "9e2c5ec10d494689",
+        "type": "inject",
+        "z": "fb5738a77d24f8d4",
+        "g": "af0e239fff0b28cb",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 150,
+        "y": 360,
+        "wires": [
+            [
+                "57ec30d9da3742eb"
+            ]
+        ]
+    },
+    {
+        "id": "57ec30d9da3742eb",
+        "type": "function",
+        "z": "fb5738a77d24f8d4",
+        "g": "af0e239fff0b28cb",
+        "name": "getLastCredential",
+        "func": "msg.collection = 'credentials';\nmsg.payload = {};\nmsg.sort = { '_id': -1 };\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 390,
+        "y": 340,
+        "wires": [
+            [
+                "b35713f8d22c2279"
+            ]
+        ]
+    },
+    {
+        "id": "f3f0cea32f89e7ca",
+        "type": "function",
+        "z": "fb5738a77d24f8d4",
+        "g": "af0e239fff0b28cb",
+        "name": "saveCurentCredentialToGlobal",
+        "func": "const data = msg.payload[0];\n\nlet process_env = {\n    \"_id\": data._id,\n    \"openAIKey\": data.openAIKey ? data.openAIKey.trim() : '',\n    \"model\": data.model ? data.model.trim() : '',\n    \"context\": data.context ? data.context.trim() : '',\n    \"goal\": data.goal ? data.goal.trim() : '',\n    \"number\": data.number ? data.number.trim() : ''\n    \n}\n\nglobal.set(\"botCredential\", process_env);\n\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 810,
+        "y": 340,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b35713f8d22c2279",
+        "type": "link call",
+        "z": "fb5738a77d24f8d4",
+        "g": "af0e239fff0b28cb",
+        "name": "find",
+        "links": [
+            "e6f8cad1b65ca144"
+        ],
+        "linkType": "static",
+        "timeout": "30",
+        "x": 570,
+        "y": 340,
+        "wires": [
+            [
+                "f3f0cea32f89e7ca"
+            ]
+        ]
+    },
+    {
+        "id": "c68c75fac53ea377",
+        "type": "inject",
+        "z": "fb5738a77d24f8d4",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 120,
+        "y": 620,
+        "wires": [
+            [
+                "582a6268302445b6"
+            ]
+        ]
+    },
+    {
+        "id": "582a6268302445b6",
+        "type": "function",
+        "z": "fb5738a77d24f8d4",
+        "name": "deleteCollection",
+        "func": "msg.collection = 'credentials';\nmsg.payload= {};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 300,
+        "y": 620,
+        "wires": [
+            [
+                "e7020a361461f03a"
+            ]
+        ]
+    },
+    {
+        "id": "b7ab102cf9517aa7",
+        "type": "http in",
+        "z": "fb5738a77d24f8d4",
+        "name": "",
+        "url": "/css",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 100,
+        "y": 60,
+        "wires": [
+            [
+                "ec25cd2e1b3a4c03"
+            ]
+        ]
+    },
+    {
+        "id": "bd563a0724955d05",
+        "type": "http response",
+        "z": "fb5738a77d24f8d4",
+        "name": "",
+        "statusCode": "",
+        "headers": {
+            "content-type": "text/css"
+        },
+        "x": 430,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "ec25cd2e1b3a4c03",
+        "type": "template",
+        "z": "fb5738a77d24f8d4",
+        "name": "customCSS",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "css",
+        "syntax": "mustache",
+        "template": "@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@500&family=Press+Start+2P&display=swap');\n\n\nbody div {\n  padding: 0 !important;\n }\n\n.t--widget-containerwidget {\n  top:0 !important;\n  left: 0 !important; \n  height: 100vh !important;\n}\n.canvas {\n  height:inherit !important; \n}\n\n/* __________LEFT SIDE__________________ */\n.title .bp3-ui-text {\n   font-family: 'Press Start 2P', sans-serif !important;\n   font-size: clamp(20px, 1.87vw, 50px) !important; \n   color: #ffffff !important;\n   cursor: default !important;\n}\n.subtitle .bp3-ui-text {\n   font-family: 'Caveat', sans-serif !important;\n   font-size: clamp(15px, 1.75vw, 30px) !important; \n   color: #ffffff !important;\n   cursor: default !important;\n}\n\n.content_container {\nbackground-color: #52ACFF !important;\nbackground-image: linear-gradient(180deg, #52ACFF 25%, #FFE32C 100%) !important;\nheight: 100vh !important;\ntop:0 !important;\nleft: 0 !important;\nwidth: 45% !important;\n\n\n}\n.bot_image > div > div > div > div > div > div > div {\n    animation: float 34s linear 0s infinite normal none;\n    transform-origin: 50% 50%;\n    z-index: 1 !important;\n}\n\n@keyframes float {\n    0%, 100% {\n        transform: translateX(0%) translateY(0%);\n    }\n\n    15% {\n        transform: translateX(-30px) translateY(-30px) rotate(4deg);\n    }\n\n    30% {\n        transform: translateX(15px) translateY(25px) rotate(-4deg);\n    }\n\n    45% {\n        transform: translateX(-15px) translateY(-15px) rotate(-3.6deg);\n    }\n\n    60% {\n        transform: translateX(9px) translateY(15px) rotate(-2.4deg);\n    }\n\n    75% {\n        transform: translateX(-6px) translateY(-10px) rotate(1.2deg);\n    }\n}\n.t--widget-containerwidget .technology_container  {\nbottom: 100 !important;\ntop: calc(100vh - 160px) !important;\nwidth:100% !important;\n}\n.technology_container > div > div > div > div > div > div > div > div > div > div > div > div > div {\n  display: flex !important;\n  justify-content: space-around !important;\n}\n.technology_container > div > div > div > div > div > div > div > div > div > div > div > div > div div {\n  position: static !important;\n}\n\n/* __________RIGHT SIDE__________________ */\n.user_info_tabs {\nbackground-color: #FFFFFF !important;\nheight: 100vh !important;\ntop:0 !important;\nwidth: 55% !important;\nleft: 45% !important;\nborder: none !important;\n}\n.user_info_tabs > div > div > div > div > div > div > div > div > div > div > div > div > div  {\n  position: relative !important;\n  width: 100% !important;\n  height: 100vh !important;\n}\n.gradient_container {\n  --border-width: 3px;\n\n  position: absolute !important;\n  top: 50% !important;\n  left: 50% !important;\n  transform: translate(-50%, -50%) !important;\n  height: fit-content !important;\n  max-height: 90% !important;\n  width: 80% !important;\n  \n}\n\n.gradient_container::after {\n    position: absolute;\n    content: \"\";\n    top: calc(-1 * var(--border-width));\n    left: calc(-1 * var(--border-width));\n    z-index: -1;\n    width: calc(100% + var(--border-width) * 2);\n    height: calc(100% + var(--border-width) * 2);\n    background: linear-gradient(\n      60deg,\n      hsl(201, 96%, 56%),\n      hsl(201, 100%, 70%),\n      hsl(60, 91%, 82%),\n      hsl(75, 67%, 95%),\n      hsl(0, 0%, 99%)\n    );\n    background-size: 300% 300%;\n    background-position: 0 50%;\n    border-radius: 10px;\n    animation: moveGradient 5s alternate infinite;\n  }\n\n@keyframes moveGradient {\n  50% {\n    background-position: 100% 50%;\n  }\n}\n.gradient_container > div > div > div > div > div > div > div > div > div > div {\n  height: fit-content !important;\n  max-height: 90% !important;\n}\n.gradient_container > div > div > div > div > div > div > div > div > div > div > div > div > div{\n  display: flex !important;\n  gap: clamp(21px, 2.5vw, 40px) !important;\n  align-items: center !important;\n  flex-direction: column !important;\n}\n.gradient_container > div > div > div > div > div > div > div > div > div > div > div > div > div div:not(:last-child) {\n  position: static !important;\n  width: 100% !important;\n  padding-left: 10px !important;\n  padding-right: 10px !important;\n}\n.gradient_container > div > div > div > div > div > div > div > div > div > div > div > div > div div:last-child {\n  position: static !important;\n \n}\n.gradient_container .uploader_container> div > div > div > div > div > div > div > div > div > div > div > div > div>div{\n  height: fit-content !important;\n \n}\n.gradient_container .uploader_container{\n  height: 72px !important;\n  position: relative !important;\n}\n.gradient_container .btn_container{\n  position: relative !important;\n  height: 60px !important;\n  width: 100% !important;\n \n}\n.gradient_container .btn_container .next_btn{\n    position: absolute !important;\n    top: unset !important;\n    bottom: 10px !important;\n    right: 10px !important;\n    left: unset !important;\n    width: 100px !important;\n}\n.next_btn span{\n    color: #FFFFFF !important;\n    \n}\n.next_btn button {\n  height: 40px !important;\n  width: 100px !important;\n  position: absolute;\n  top: calc(100% - 19px) !important;\n  right: 0px !important;\n}\n\n.next_btn button::after,.next_btn div::after, .previous_btn button::after,.previous_btn div::after,.add_btn button::after,.add_btn div::after, .action_btn button::after,.action_btn div::after, .delete_avatar_btn button::after,.delete_avatar_btn div::after {\n  position: static !important;\n  \n}\n.gradient_container .btn_container .previous_btn{\n    position: absolute !important;\n    top: unset !important;\n    bottom: 10px !important;\n    left: 10px !important;\n    right: unset !important;\n    width: 100px !important;\n}\n.previous_btn button {\n  height: 40px !important;\n  width: 100px !important;\n  position: absolute;\n  top: calc(100% - 19px) !important;\n  left: 0px !important;\n}\n.gradient_container .uploader_container .add_btn{\n  height: 40px !important;\n  width: 40px !important;\n  \n}\n.add_btn button {\n  height: 40px !important;\n  width: 40px !important;\n  margin-top: 19px;\n  position: static !important;\n}\n.add_btn button:hover {\n  background-color: #52ACFF !important;\n}\n.delete_avatar_btn button{\n   height: 40px !important;\n  width: 40px !important;\n  position: absolute !important;\n  top: 64% !important;\n  left: 30% !important;\n  z-index: -1 !important;\n  opacity: 0 !important;\n  transition: opacity 0.3s ease !important;\n}\n.actors_item_container:hover > div > div > div > div > div > div> div > div > div > div > div > div > div > div.delete_avatar_btn button {\n  z-index: 1 !important;\n  opacity: 1 !important;\n}\n.gradient_container .btn_container .action_btn{\n    position: absolute !important;\n    top: unset !important;\n    bottom: 10px !important;\n    left: 10px !important;\n    right: unset !important;\n    width: 100px !important;\n}\n.action_btn button {\n  height: 40px !important;\n  width: 250px !important;\n  position: absolute;\n  top: calc(100% - 19px) !important;\n  left: 0px !important;\n}\n\n.gradient_container .uploader_container > div > div > div > div > div > div > div > div > div > div > div > div > div {\n  display: flex !important;\n  flex-direction: row !important;\n  justify-content: space-between !important;\n  align-items: flex-end !important;\n  gap: 10px !important;\n}\n.gradient_container .uploader_container > div > div > div > div > div > div > div > div > div > div > div > div > div div {\n padding: 0 !important;\n}\n.gradient_container .actors_list {\n  height: clamp(170px, 17vw, 270px) !important;\n}\n\n.actors_list .custom-wrapper-canvas-list{\n  display: flex !important;\n  flex-direction: row !important;\n  justify-content: center !important;\n  align-items: center !important;\n  flex-wrap: wrap !important;\n  \n}\n\n.actors_list .actors_item_container .actor {\n  border: 2px solid #eceff192 !important;\n  border-radius: 50% !important;\n  height: 120px !important;\n  width: 120px !important;\n  padding-left: 0px !important;\n  padding-right: 0px !important;\n}\n.actors_list .actors_item_container .actor:hover{\n  border: 2px solid #f0b411 !important;\n}\n.actors_list .actors_item_container .selected_actor {\n  border: 2px solid #f0b411 !important;\n  border-radius: 50% !important;\n  height: 120px !important;\n  width: 120px !important;\n  padding-left: 0px !important;\n  padding-right: 0px !important;\n \n}\n.actors_list .actor>div>div>div>div>div>div>div {\nborder-radius: 50% !important;\n}\n.actors_list .bp3-icon-plus{\n    display: none !important;\n}\n.actors_list.actors_item_container>div>div>div>div>div>div>div>div>div>div>button{\n    display: none !important;\n}\n\n.gradient_container .actors_list .actors_item_container{\n    width: 150px !important;\n    height:150px !important;\n}\n.gradient_container .actors_list .actors_item_container>div>div>div>div>div>div>div>div>div>div>div>div>div{\n    position:relative !important;\n    \n}\n.step4_title{\n  margin-top: 10px !important;\n}\n.gradient_container.final_container > div > div > div > div > div > div > div > div > div > div > div > div > div{\n gap: clamp(10px, 1.8vw, 20px) !important;\n}\n.rainbow-text {\n  background-image: linear-gradient(247deg, #52ACFF 25%, #FFE32C 100%);\n  -webkit-background-clip: text;\n  -webkit-text-fill-color: transparent;\n}\n.gradient_container .final_input > div > div > div > div div:first-child{\nflex: 1 !important;\nwidth: 150px !important;\npadding-left: 0px !important;\npadding-right: 0px !important;\nmargin-right: 0px !important;\n}\n.gradient_container .final_input > div > div > div > div div:last-child{\nflex: 0 0 calc(100% - 52px) !important;\npadding-left: 0px !important;\npadding-right: 0px !important;\n\n}\n.gradient_container .final_img_container{\n  height: 90px !important;\n}\n.gradient_container .final_img_container > div > div > div > div > div > div > div > div > div > div > div > div > div {\n    display: flex !important;\n    flex-direction: row-reverse !important;\n    justify-content: start !important;\n    align-items: flex-start !important;\n    gap: 26px !important;\n    \n}\n\n.gradient_container .final_img_container .final_img {\n  border: 2px solid #f0b411 !important;\n  border-radius: 50% !important;\n  height: 80px !important;\n  width: 80px !important;\n  padding-left: 0px !important;\n  padding-right: 0px !important;\n \n}\n.gradient_container .final_img_container .final_img>div>div>div>div>div>div>div {\nborder-radius: 50% !important;\n}\n\n.bp3-input:disabled {\n    background-color: rgb(126 191 255);\n    background-image: linear-gradient(247deg, #52acff6e 25%, #ffe32c6e 100%) !important;\n    color: rgb(9, 9, 9);\n}\n.bp3-input, .select-button {\n    border-radius: 5px !important;\n}",
+        "output": "str",
+        "x": 270,
+        "y": 60,
+        "wires": [
+            [
+                "bd563a0724955d05"
+            ]
+        ]
+    },
+    {
+        "id": "e7020a361461f03a",
+        "type": "mongodb out",
+        "z": "fb5738a77d24f8d4",
+        "mongodb": "f168eeb2f9b6dc07",
+        "name": "",
+        "collection": "credentials",
+        "payonly": false,
+        "upsert": false,
+        "multi": false,
+        "operation": "delete",
+        "x": 640,
+        "y": 620,
+        "wires": []
+    },
+    {
+        "id": "55d5db6359a0fa94",
+        "type": "function",
+        "z": "fb5738a77d24f8d4",
+        "name": "make request",
+        "func": "const botCredential = global.get('botCredential');\n\nmsg.OPENAI_API_KEY = botCredential.openAIKey;\nmsg.prompt = botCredential.prompt;\nmsg.model = botCredential.chatVersion;\nmsg.messages = [\n    { \"role\": \"system\", \"content\": botCredential.prompt }\n];\n\nreturn [null, msg];\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 320,
+        "y": 480,
+        "wires": [
+            [
+                "abaccb29fd60f0c9",
+                "e303da0b1c1f0fcd"
+            ]
+        ]
+    },
+    {
+        "id": "abaccb29fd60f0c9",
+        "type": "openai-ubos",
+        "z": "fb5738a77d24f8d4",
+        "name": "",
+        "model": "gpt-3.5-turbo",
+        "temperature": 0.5,
+        "max_tokens": 60,
+        "prompt": "",
+        "frequency_penalty": 0,
+        "presence_penalty": 0,
+        "top_p": 1,
+        "stop": {
+            "type": "json",
+            "value": "[]"
+        },
+        "OPENAI_API_KEY": "",
+        "x": 520,
+        "y": 480,
+        "wires": [
+            [
+                "baf4fee8d569cfa9",
+                "4e93ec3a3897a637"
+            ]
+        ]
+    },
+    {
+        "id": "baf4fee8d569cfa9",
+        "type": "function",
+        "z": "fb5738a77d24f8d4",
+        "name": "response",
+        "func": "if (msg.statusCode == 200) {\n    return [msg, null]\n    \n} else {\n   return [null, msg]\n}\n",
+        "outputs": 2,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 700,
+        "y": 480,
+        "wires": [
+            [
+                "7e57c7bee4ce47fe",
+                "fa079b1d78cee18a"
+            ],
+            [
+                "e0e62ff1db29d9de",
+                "fa079b1d78cee18a"
+            ]
+        ]
+    },
+    {
+        "id": "d02c1888b7d51e21",
+        "type": "http in",
+        "z": "fb5738a77d24f8d4",
+        "name": "",
+        "url": "/generate",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 120,
+        "y": 480,
+        "wires": [
+            [
+                "55d5db6359a0fa94"
+            ]
+        ]
+    },
+    {
+        "id": "7e57c7bee4ce47fe",
+        "type": "http response",
+        "z": "fb5738a77d24f8d4",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 850,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "e0e62ff1db29d9de",
+        "type": "http response",
+        "z": "fb5738a77d24f8d4",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 850,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "e6f8cad1b65ca144",
+        "type": "link in",
+        "z": "fb5738a77d24f8d4",
+        "g": "81010ac89e2578ce",
+        "name": "findDB",
+        "links": [],
+        "x": 1170,
+        "y": 160,
+        "wires": [
+            [
+                "e3ba8759d1474ebe"
+            ]
+        ],
+        "l": true
+    },
+    {
+        "id": "b3f5ed024160118c",
+        "type": "link out",
+        "z": "fb5738a77d24f8d4",
+        "g": "81010ac89e2578ce",
+        "name": "link out 6",
+        "mode": "return",
+        "links": [],
+        "x": 1475,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "4deaa9b0d8ad4d5a",
+        "type": "link in",
+        "z": "fb5738a77d24f8d4",
+        "g": "81010ac89e2578ce",
+        "name": "insertDB",
+        "links": [],
+        "x": 1180,
+        "y": 220,
+        "wires": [
+            [
+                "5062046f510fd611",
+                "08beb73ed61742bd"
+            ]
+        ],
+        "l": true
+    },
+    {
+        "id": "08beb73ed61742bd",
+        "type": "link out",
+        "z": "fb5738a77d24f8d4",
+        "g": "81010ac89e2578ce",
+        "name": "link out 7",
+        "mode": "return",
+        "links": [],
+        "x": 1295,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "5062046f510fd611",
+        "type": "mongodb out",
+        "z": "fb5738a77d24f8d4",
+        "g": "81010ac89e2578ce",
+        "mongodb": "f168eeb2f9b6dc07",
+        "name": "MongoDB",
+        "collection": "",
+        "payonly": true,
+        "upsert": false,
+        "multi": false,
+        "operation": "insert",
+        "x": 1350,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "e3ba8759d1474ebe",
+        "type": "mongodb in",
+        "z": "fb5738a77d24f8d4",
+        "g": "81010ac89e2578ce",
+        "mongodb": "f168eeb2f9b6dc07",
+        "name": "MongoDB",
+        "collection": "",
+        "operation": "find",
+        "x": 1350,
+        "y": 160,
+        "wires": [
+            [
+                "b3f5ed024160118c"
+            ]
+        ]
+    },
+    {
+        "id": "d1a4dfc3923a698c",
+        "type": "catch",
+        "z": "fb5738a77d24f8d4",
+        "name": "",
+        "scope": null,
+        "uncaught": false,
+        "x": 100,
+        "y": 540,
+        "wires": [
+            [
+                "3ddddace26481a2a"
+            ]
+        ]
+    },
+    {
+        "id": "3ddddace26481a2a",
+        "type": "debug",
+        "z": "fb5738a77d24f8d4",
+        "name": "msg",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 290,
+        "y": 540,
+        "wires": []
+    },
+    {
+        "id": "e303da0b1c1f0fcd",
+        "type": "debug",
+        "z": "fb5738a77d24f8d4",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 520,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "4e93ec3a3897a637",
+        "type": "debug",
+        "z": "fb5738a77d24f8d4",
+        "name": "debug 2",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 700,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "fa079b1d78cee18a",
+        "type": "debug",
+        "z": "fb5738a77d24f8d4",
+        "name": "debug 3",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1000,
+        "y": 480,
+        "wires": []
+    }
+]

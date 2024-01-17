@@ -1,1 +1,6 @@
-{}
+{
+    "f168eeb2f9b6dc07": {
+        "user": "${MONGO-USER-NAME}",
+        "password": "${MONGO-PASSWORD}"
+    }
+}

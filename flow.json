@@ -301,7 +301,7 @@
         "z": "fb5738a77d24f8d4",
         "g": "af0e239fff0b28cb",
         "name": "saveCurentCredentialToGlobal",
-        "func": "const data = msg.payload[0];\n\nlet process_env = {\n    \"_id\": data._id,\n    \"openAIKey\": data.openAIKey ? data.openAIKey.trim() : '',\n    \"model\": data.model ? data.model.trim() : '',\n    \"context\": data.context ? data.context.trim() : '',\n    \"goal\": data.goal ? data.goal.trim() : '',\n    \"number\": data.number ? data.number.trim() : ''\n    \n}\n\nglobal.set(\"botCredential\", process_env);\n\nreturn msg;\n",
+        "func": "const data = msg.payload[0];\n\nlet process_env = {\n    \"_id\": data._id,\n    \"openAIKey\": data.openAIKey ? data.openAIKey.trim() : '',\n    \"model\": data.model ? data.model.trim() : '',\n    \"context\": data.context ? data.context.trim() : '',\n    \"goal\": data.goal ? data.goal.trim() : '',\n    \"number\": data.number ? data.number.trim() : ''\n    \n}\n\nglobal.set(\"credential\", process_env);\n\nreturn msg;\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -419,7 +419,7 @@
         "fieldType": "msg",
         "format": "css",
         "syntax": "mustache",
-        "template": "@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@500&family=Press+Start+2P&display=swap');\n\n\nbody div {\n  padding: 0 !important;\n }\n\n.t--widget-containerwidget {\n  top:0 !important;\n  left: 0 !important; \n  height: 100vh !important;\n}\n.canvas {\n  height:inherit !important; \n}\n\n/* __________LEFT SIDE__________________ */\n.title .bp3-ui-text {\n   font-family: 'Press Start 2P', sans-serif !important;\n   font-size: clamp(20px, 1.87vw, 50px) !important; \n   color: #ffffff !important;\n   cursor: default !important;\n}\n.subtitle .bp3-ui-text {\n   font-family: 'Caveat', sans-serif !important;\n   font-size: clamp(15px, 1.75vw, 30px) !important; \n   color: #ffffff !important;\n   cursor: default !important;\n}\n\n.content_container {\nbackground-color: #52ACFF !important;\nbackground-image: linear-gradient(180deg, #52ACFF 25%, #FFE32C 100%) !important;\nheight: 100vh !important;\ntop:0 !important;\nleft: 0 !important;\nwidth: 45% !important;\n\n\n}\n.bot_image > div > div > div > div > div > div > div {\n    animation: float 34s linear 0s infinite normal none;\n    transform-origin: 50% 50%;\n    z-index: 1 !important;\n}\n\n@keyframes float {\n    0%, 100% {\n        transform: translateX(0%) translateY(0%);\n    }\n\n    15% {\n        transform: translateX(-30px) translateY(-30px) rotate(4deg);\n    }\n\n    30% {\n        transform: translateX(15px) translateY(25px) rotate(-4deg);\n    }\n\n    45% {\n        transform: translateX(-15px) translateY(-15px) rotate(-3.6deg);\n    }\n\n    60% {\n        transform: translateX(9px) translateY(15px) rotate(-2.4deg);\n    }\n\n    75% {\n        transform: translateX(-6px) translateY(-10px) rotate(1.2deg);\n    }\n}\n.t--widget-containerwidget .technology_container  {\nbottom: 100 !important;\ntop: calc(100vh - 160px) !important;\nwidth:100% !important;\n}\n.technology_container > div > div > div > div > div > div > div > div > div > div > div > div > div {\n  display: flex !important;\n  justify-content: space-around !important;\n}\n.technology_container > div > div > div > div > div > div > div > div > div > div > div > div > div div {\n  position: static !important;\n}\n\n/* __________RIGHT SIDE__________________ */\n.user_info_tabs {\nbackground-color: #FFFFFF !important;\nheight: 100vh !important;\ntop:0 !important;\nwidth: 55% !important;\nleft: 45% !important;\nborder: none !important;\n}\n.user_info_tabs > div > div > div > div > div > div > div > div > div > div > div > div > div  {\n  position: relative !important;\n  width: 100% !important;\n  height: 100vh !important;\n}\n.gradient_container {\n  --border-width: 3px;\n\n  position: absolute !important;\n  top: 50% !important;\n  left: 50% !important;\n  transform: translate(-50%, -50%) !important;\n  height: fit-content !important;\n  max-height: 90% !important;\n  width: 80% !important;\n  \n}\n\n.gradient_container::after {\n    position: absolute;\n    content: \"\";\n    top: calc(-1 * var(--border-width));\n    left: calc(-1 * var(--border-width));\n    z-index: -1;\n    width: calc(100% + var(--border-width) * 2);\n    height: calc(100% + var(--border-width) * 2);\n    background: linear-gradient(\n      60deg,\n      hsl(201, 96%, 56%),\n      hsl(201, 100%, 70%),\n      hsl(60, 91%, 82%),\n      hsl(75, 67%, 95%),\n      hsl(0, 0%, 99%)\n    );\n    background-size: 300% 300%;\n    background-position: 0 50%;\n    border-radius: 10px;\n    animation: moveGradient 5s alternate infinite;\n  }\n\n@keyframes moveGradient {\n  50% {\n    background-position: 100% 50%;\n  }\n}\n.gradient_container > div > div > div > div > div > div > div > div > div > div {\n  height: fit-content !important;\n  max-height: 90% !important;\n}\n.gradient_container > div > div > div > div > div > div > div > div > div > div > div > div > div{\n  display: flex !important;\n  gap: clamp(21px, 2.5vw, 40px) !important;\n  align-items: center !important;\n  flex-direction: column !important;\n}\n.gradient_container > div > div > div > div > div > div > div > div > div > div > div > div > div div:not(:last-child) {\n  position: static !important;\n  width: 100% !important;\n  padding-left: 10px !important;\n  padding-right: 10px !important;\n}\n.gradient_container > div > div > div > div > div > div > div > div > div > div > div > div > div div:last-child {\n  position: static !important;\n \n}\n.gradient_container .uploader_container> div > div > div > div > div > div > div > div > div > div > div > div > div>div{\n  height: fit-content !important;\n \n}\n.gradient_container .uploader_container{\n  height: 72px !important;\n  position: relative !important;\n}\n.gradient_container .btn_container{\n  position: relative !important;\n  height: 60px !important;\n  width: 100% !important;\n \n}\n.gradient_container .btn_container .next_btn{\n    position: absolute !important;\n    top: unset !important;\n    bottom: 10px !important;\n    right: 10px !important;\n    left: unset !important;\n    width: 100px !important;\n}\n.next_btn span{\n    color: #FFFFFF !important;\n    \n}\n.next_btn button {\n  height: 40px !important;\n  width: 100px !important;\n  position: absolute;\n  top: calc(100% - 19px) !important;\n  right: 0px !important;\n}\n\n.next_btn button::after,.next_btn div::after, .previous_btn button::after,.previous_btn div::after,.add_btn button::after,.add_btn div::after, .action_btn button::after,.action_btn div::after, .delete_avatar_btn button::after,.delete_avatar_btn div::after {\n  position: static !important;\n  \n}\n.gradient_container .btn_container .previous_btn{\n    position: absolute !important;\n    top: unset !important;\n    bottom: 10px !important;\n    left: 10px !important;\n    right: unset !important;\n    width: 100px !important;\n}\n.previous_btn button {\n  height: 40px !important;\n  width: 100px !important;\n  position: absolute;\n  top: calc(100% - 19px) !important;\n  left: 0px !important;\n}\n.gradient_container .uploader_container .add_btn{\n  height: 40px !important;\n  width: 40px !important;\n  \n}\n.add_btn button {\n  height: 40px !important;\n  width: 40px !important;\n  margin-top: 19px;\n  position: static !important;\n}\n.add_btn button:hover {\n  background-color: #52ACFF !important;\n}\n.delete_avatar_btn button{\n   height: 40px !important;\n  width: 40px !important;\n  position: absolute !important;\n  top: 64% !important;\n  left: 30% !important;\n  z-index: -1 !important;\n  opacity: 0 !important;\n  transition: opacity 0.3s ease !important;\n}\n.actors_item_container:hover > div > div > div > div > div > div> div > div > div > div > div > div > div > div.delete_avatar_btn button {\n  z-index: 1 !important;\n  opacity: 1 !important;\n}\n.gradient_container .btn_container .action_btn{\n    position: absolute !important;\n    top: unset !important;\n    bottom: 10px !important;\n    left: 10px !important;\n    right: unset !important;\n    width: 100px !important;\n}\n.action_btn button {\n  height: 40px !important;\n  width: 250px !important;\n  position: absolute;\n  top: calc(100% - 19px) !important;\n  left: 0px !important;\n}\n\n.gradient_container .uploader_container > div > div > div > div > div > div > div > div > div > div > div > div > div {\n  display: flex !important;\n  flex-direction: row !important;\n  justify-content: space-between !important;\n  align-items: flex-end !important;\n  gap: 10px !important;\n}\n.gradient_container .uploader_container > div > div > div > div > div > div > div > div > div > div > div > div > div div {\n padding: 0 !important;\n}\n.gradient_container .actors_list {\n  height: clamp(170px, 17vw, 270px) !important;\n}\n\n.actors_list .custom-wrapper-canvas-list{\n  display: flex !important;\n  flex-direction: row !important;\n  justify-content: center !important;\n  align-items: center !important;\n  flex-wrap: wrap !important;\n  \n}\n\n.actors_list .actors_item_container .actor {\n  border: 2px solid #eceff192 !important;\n  border-radius: 50% !important;\n  height: 120px !important;\n  width: 120px !important;\n  padding-left: 0px !important;\n  padding-right: 0px !important;\n}\n.actors_list .actors_item_container .actor:hover{\n  border: 2px solid #f0b411 !important;\n}\n.actors_list .actors_item_container .selected_actor {\n  border: 2px solid #f0b411 !important;\n  border-radius: 50% !important;\n  height: 120px !important;\n  width: 120px !important;\n  padding-left: 0px !important;\n  padding-right: 0px !important;\n \n}\n.actors_list .actor>div>div>div>div>div>div>div {\nborder-radius: 50% !important;\n}\n.actors_list .bp3-icon-plus{\n    display: none !important;\n}\n.actors_list.actors_item_container>div>div>div>div>div>div>div>div>div>div>button{\n    display: none !important;\n}\n\n.gradient_container .actors_list .actors_item_container{\n    width: 150px !important;\n    height:150px !important;\n}\n.gradient_container .actors_list .actors_item_container>div>div>div>div>div>div>div>div>div>div>div>div>div{\n    position:relative !important;\n    \n}\n.step4_title{\n  margin-top: 10px !important;\n}\n.gradient_container.final_container > div > div > div > div > div > div > div > div > div > div > div > div > div{\n gap: clamp(10px, 1.8vw, 20px) !important;\n}\n.rainbow-text {\n  background-image: linear-gradient(247deg, #52ACFF 25%, #FFE32C 100%);\n  -webkit-background-clip: text;\n  -webkit-text-fill-color: transparent;\n}\n.gradient_container .final_input > div > div > div > div div:first-child{\nflex: 1 !important;\nwidth: 150px !important;\npadding-left: 0px !important;\npadding-right: 0px !important;\nmargin-right: 0px !important;\n}\n.gradient_container .final_input > div > div > div > div div:last-child{\nflex: 0 0 calc(100% - 52px) !important;\npadding-left: 0px !important;\npadding-right: 0px !important;\n\n}\n.gradient_container .final_img_container{\n  height: 90px !important;\n}\n.gradient_container .final_img_container > div > div > div > div > div > div > div > div > div > div > div > div > div {\n    display: flex !important;\n    flex-direction: row-reverse !important;\n    justify-content: start !important;\n    align-items: flex-start !important;\n    gap: 26px !important;\n    \n}\n\n.gradient_container .final_img_container .final_img {\n  border: 2px solid #f0b411 !important;\n  border-radius: 50% !important;\n  height: 80px !important;\n  width: 80px !important;\n  padding-left: 0px !important;\n  padding-right: 0px !important;\n \n}\n.gradient_container .final_img_container .final_img>div>div>div>div>div>div>div {\nborder-radius: 50% !important;\n}\n\n.bp3-input:disabled {\n    background-color: rgb(126 191 255);\n    background-image: linear-gradient(247deg, #52acff6e 25%, #ffe32c6e 100%) !important;\n    color: rgb(9, 9, 9);\n}\n.bp3-input, .select-button {\n    border-radius: 5px !important;\n}",
+        "template": "body div {\n  padding: 0 !important;\n }\n\n.main_container {\n  top:0 !important;\n  left: 0 !important; \n  height: 100vh !important;\n  width: 100% !important;\n}\n.canvas {\n  height:inherit !important; \n}\n.bp3-input, .select-button {\n    border-radius: 5px !important;\n    color: #495894 !important;\n}\n.select-button span {\n    color: inherit !important;\n}\n/* __________LEFT SIDE__________________ */\n.title .bp3-ui-text {\n   font-size: clamp(20px, 2.3vw, 50px) !important; \n   cursor: default !important;\n}\n.content_container {\nheight: 100vh !important;\ntop:0 !important;\nleft: 0 !important;\nwidth: 45% !important;\n}\n\n\n/* __________RIGHT SIDE__________________ */\n.survey_form {\nheight: 100vh !important;\ntop:0 !important;\nwidth: 55% !important;\nleft: 45% !important;\nborder: none !important;\npadding: 20px !important;\noverflow: auto !important;\n}\n.text_container{\n  height: 50% !important;\n}\n.generate_btn{\n  width: 100% !important;\n  padding-left: 10px !important;\n  padding-right: 35px !important;\n}\n.generate_btn span{\n    color: #FFFFFF !important;\n}\n.answers{\n  height: fit-content !important;\n}\n.answers >div >div >div >div >div {\n  border-radius: 5px;\n  padding: 7px !important;\n}\n",
         "output": "str",
         "x": 270,
         "y": 60,
@@ -449,7 +449,7 @@
         "type": "function",
         "z": "fb5738a77d24f8d4",
         "name": "make request",
-        "func": "const botCredential = global.get('botCredential');\n\nmsg.OPENAI_API_KEY = botCredential.openAIKey;\nmsg.prompt = botCredential.prompt;\nmsg.model = botCredential.chatVersion;\nmsg.messages = [\n    { \"role\": \"system\", \"content\": botCredential.prompt }\n];\n\nreturn [null, msg];\n",
+        "func": "const credential = global.get('credential');\n\nmsg.OPENAI_API_KEY = credential.openAIKey;\nmsg.model = credential.model;\n// msg.prompt = `Create a poll-only question without an answer option based on specific criteria:Context: ${credential.context}.Goal: ${credential.goal}.Based on the above context and goal generate ${credential.number} of survey questions;`;\nmsg.messages= [\n    {\n        role: \"system\",\n        content: \"You are a helpful helper created only to create survey questions with no multiple choice answers based on specific user-supplied criteria\",\n    },\n    { role: \"user\", content: `Context: ${credential.context}.Goal: ${credential.goal }. Number of survey questions is: ${ credential.number }` },\n];\n\n\n\nreturn msg;\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -459,8 +459,7 @@
         "y": 480,
         "wires": [
             [
-                "abaccb29fd60f0c9",
-                "e303da0b1c1f0fcd"
+                "abaccb29fd60f0c9"
             ]
         ]
     },
@@ -471,7 +470,7 @@
         "name": "",
         "model": "gpt-3.5-turbo",
         "temperature": 0.5,
-        "max_tokens": 60,
+        "max_tokens": 500,
         "prompt": "",
         "frequency_penalty": 0,
         "presence_penalty": 0,
@@ -485,8 +484,7 @@
         "y": 480,
         "wires": [
             [
-                "baf4fee8d569cfa9",
-                "4e93ec3a3897a637"
+                "baf4fee8d569cfa9"
             ]
         ]
     },
@@ -495,8 +493,8 @@
         "type": "function",
         "z": "fb5738a77d24f8d4",
         "name": "response",
-        "func": "if (msg.statusCode == 200) {\n    return [msg, null]\n    \n} else {\n   return [null, msg]\n}\n",
-        "outputs": 2,
+        "func": "if(msg.statusCode === 200){\n    const answers = msg.payload.choices[0].message.content\n    msg.payload= answers;\n}\nelse {\n    msg.payload = \"Ooops, something went wrong!\"\n}\n\nreturn msg;",
+        "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
@@ -505,12 +503,7 @@
         "y": 480,
         "wires": [
             [
-                "7e57c7bee4ce47fe",
-                "fa079b1d78cee18a"
-            ],
-            [
-                "e0e62ff1db29d9de",
-                "fa079b1d78cee18a"
+                "7e57c7bee4ce47fe"
             ]
         ]
     },
@@ -539,18 +532,7 @@
         "statusCode": "",
         "headers": {},
         "x": 850,
-        "y": 460,
-        "wires": []
-    },
-    {
-        "id": "e0e62ff1db29d9de",
-        "type": "http response",
-        "z": "fb5738a77d24f8d4",
-        "name": "",
-        "statusCode": "",
-        "headers": {},
-        "x": 850,
-        "y": 500,
+        "y": 480,
         "wires": []
     },
     {
@@ -676,54 +658,32 @@
         "wires": []
     },
     {
-        "id": "e303da0b1c1f0fcd",
-        "type": "debug",
+        "id": "91a5d059ba75613e",
+        "type": "inject",
         "z": "fb5738a77d24f8d4",
-        "name": "debug 1",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 520,
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 140,
         "y": 440,
-        "wires": []
-    },
-    {
-        "id": "4e93ec3a3897a637",
-        "type": "debug",
-        "z": "fb5738a77d24f8d4",
-        "name": "debug 2",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 700,
-        "y": 440,
-        "wires": []
-    },
-    {
-        "id": "fa079b1d78cee18a",
-        "type": "debug",
-        "z": "fb5738a77d24f8d4",
-        "name": "debug 3",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 1000,
-        "y": 480,
-        "wires": []
+        "wires": [
+            [
+                "55d5db6359a0fa94"
+            ]
+        ]
     }
 ]

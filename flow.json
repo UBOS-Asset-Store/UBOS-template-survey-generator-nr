@@ -62,11 +62,11 @@
     {
         "id": "f168eeb2f9b6dc07",
         "type": "mongodb",
-        "hostname": "${MONGO-HOST-NAME}",
+        "hostname": "${SURVEYDB-MONGO-HOST-NAME}",
         "topology": "direct",
         "connectOptions": "authSource=admin",
         "port": "27017",
-        "db": "${MONGO-DB-NAME}",
+        "db": "${SURVEYDB-MONGO-DB-NAME}",
         "name": ""
     },
     {

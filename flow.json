@@ -333,54 +333,6 @@
         ]
     },
     {
-        "id": "c68c75fac53ea377",
-        "type": "inject",
-        "z": "fb5738a77d24f8d4",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "x": 120,
-        "y": 620,
-        "wires": [
-            [
-                "582a6268302445b6"
-            ]
-        ]
-    },
-    {
-        "id": "582a6268302445b6",
-        "type": "function",
-        "z": "fb5738a77d24f8d4",
-        "name": "deleteCollection",
-        "func": "msg.collection = 'credentials';\nmsg.payload= {};\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 300,
-        "y": 620,
-        "wires": [
-            [
-                "e7020a361461f03a"
-            ]
-        ]
-    },
-    {
         "id": "b7ab102cf9517aa7",
         "type": "http in",
         "z": "fb5738a77d24f8d4",
@@ -419,7 +371,7 @@
         "fieldType": "msg",
         "format": "css",
         "syntax": "mustache",
-        "template": "body div {\n  padding: 0 !important;\n }\n\n.main_container {\n  top:0 !important;\n  left: 0 !important; \n  height: 100vh !important;\n  width: 100% !important;\n}\n.canvas {\n  height:inherit !important; \n}\n.bp3-input, .select-button {\n    border-radius: 5px !important;\n    color: #495894 !important;\n}\n.select-button span {\n    color: inherit !important;\n}\n/* __________LEFT SIDE__________________ */\n.title .bp3-ui-text {\n   font-size: clamp(20px, 2.3vw, 50px) !important; \n   cursor: default !important;\n}\n.content_container {\nheight: 100vh !important;\ntop:0 !important;\nleft: 0 !important;\nwidth: 45% !important;\n}\n\n\n/* __________RIGHT SIDE__________________ */\n.survey_form {\nheight: 100vh !important;\ntop:0 !important;\nwidth: 55% !important;\nleft: 45% !important;\nborder: none !important;\npadding: 20px !important;\noverflow: auto !important;\n}\n.text_container{\n  height: 50% !important;\n}\n.generate_btn{\n  width: 100% !important;\n  padding-left: 10px !important;\n  padding-right: 35px !important;\n}\n.generate_btn span{\n    color: #FFFFFF !important;\n}\n.answers{\n  height: fit-content !important;\n}\n.answers >div >div >div >div >div {\n  border-radius: 5px;\n  padding: 7px !important;\n}\n",
+        "template": "body div {\n  padding: 0 !important;\n  \n }\n\n.main_container {\n  top:0 !important;\n  left: 0 !important; \n  height: 100vh !important;\n  width: 100% !important;\n}\n.canvas {\n  height:inherit !important; \n}\n.bp3-input, .select-button {\n    border-radius: 5px !important;\n    color: #495894 !important;\n}\n.select-button span {\n    color: inherit !important;\n}\n/* __________LEFT SIDE__________________ */\n.title .bp3-ui-text {\n   font-size: clamp(20px, 2.3vw, 50px) !important; \n   cursor: default !important;\n}\n.content_container {\nheight: 100vh !important;\ntop:0 !important;\nleft: 0 !important;\nwidth: 45% !important;\n}\n\n\n/* __________RIGHT SIDE__________________ */\n.survey_form {\nheight: 100vh !important;\ntop:0 !important;\nwidth: 55% !important;\nleft: 45% !important;\nborder: none !important;\npadding: 20px !important;\n\n}\n\n.generate_btn{\n  width: 50% !important;\n  left: 25% !important;\n}\n.generate_btn span{\n    color: #FFFFFF !important;\n}\n/* .answers{\n  height: 31.25vw !important;\n  max-height: 50% !important;\n} */\n.answers >div >div >div >div >div {\n  border-radius: 5px;\n  padding: 7px !important;\n}\n",
         "output": "str",
         "x": 270,
         "y": 60,
@@ -428,21 +380,6 @@
                 "bd563a0724955d05"
             ]
         ]
-    },
-    {
-        "id": "e7020a361461f03a",
-        "type": "mongodb out",
-        "z": "fb5738a77d24f8d4",
-        "mongodb": "f168eeb2f9b6dc07",
-        "name": "",
-        "collection": "credentials",
-        "payonly": false,
-        "upsert": false,
-        "multi": false,
-        "operation": "delete",
-        "x": 640,
-        "y": 620,
-        "wires": []
     },
     {
         "id": "55d5db6359a0fa94",
@@ -656,34 +593,5 @@
         "x": 290,
         "y": 540,
         "wires": []
-    },
-    {
-        "id": "91a5d059ba75613e",
-        "type": "inject",
-        "z": "fb5738a77d24f8d4",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "x": 140,
-        "y": 440,
-        "wires": [
-            [
-                "55d5db6359a0fa94"
-            ]
-        ]
     }
 ]
